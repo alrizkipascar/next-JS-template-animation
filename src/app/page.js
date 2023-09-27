@@ -1,113 +1,269 @@
-import Image from 'next/image'
+"use client";
+import { useEffect, useState } from "react";
+import { kanit } from "./fonts";
+import Facilitates from "@/components/Facilitates";
+import TestimonialCard from "@/components/TestimonialCard";
 
 export default function Home() {
+  // SET ELEMENT
+  const [el1, setEl1] = useState(null);
+  const [el2, setEl2] = useState(null);
+  const [el3, setEl3] = useState(null);
+  const [el4, setEl4] = useState(null);
+
+  const [observer1, setObserver1] = useState(null);
+  const [observer2, setObserver2] = useState(null);
+  const [observer3, setObserver3] = useState(null);
+  const [observer4, setObserver4] = useState(null);
+
+  const [anim1, setPage1] = useState(false);
+  const [anim2, setPage2] = useState(false);
+  const [anim3, setPage3] = useState(false);
+  const [anim4, setPage4] = useState(false);
+
+  useEffect(() => {
+    setEl2(document.querySelector("#second"));
+    setEl3(document.querySelector("#third"));
+    setEl1(document.querySelector("#fourth"));
+
+    setEl4(document.querySelector("#stats"));
+    const observer2 = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          console.log("ENTER 2");
+          setPage2(true);
+          return;
+        }
+        console.log("LEAVE 2");
+        // setPage2(false);
+      },
+      {
+        root: null,
+        threshold: 0.1, // set offset 0.1 means trigger if atleast 10% of element in viewport
+      }
+    );
+    setObserver2(observer2);
+    const observer3 = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          console.log("ENTER 3");
+          setPage3(true);
+          return;
+        }
+        console.log("LEAVE 3");
+        // setPage3(false);
+      },
+      {
+        root: null,
+        threshold: 0.1, // set offset 0.1 means trigger if atleast 10% of element in viewport
+      }
+    );
+    setObserver3(observer3);
+    // observer.observe(el);
+    const observer1 = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          console.log("ENTER 1");
+          setPage1(true);
+          return;
+        }
+        console.log("LEAVE 1");
+        // setPage1(false);
+      },
+      {
+        root: null,
+        threshold: 0.1, // set offset 0.1 means trigger if atleast 10% of element in viewport
+      }
+    );
+    setObserver1(observer1);
+
+    //
+    const observer4 = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          console.log("ENTER 4");
+          setPage4(true);
+          return;
+        }
+        console.log("LEAVE 4");
+        // setPage1(false);
+      },
+      {
+        root: null,
+        threshold: 0.1, // set offset 0.1 means trigger if atleast 10% of element in viewport
+      }
+    );
+    setObserver4(observer4);
+  }, []);
+
+  if (observer1 && observer2 && observer3 && observer4) {
+    observer1.observe(el1);
+    observer2.observe(el2);
+    observer3.observe(el3);
+    observer4.observe(el4);
+  }
+
+  function animateValue(id, start, end, duration) {
+    if (
+      document.getElementById("totalPost") !== null &&
+      document.getElementById("totalUser") !== null
+    ) {
+      if (start === end) return;
+      const range = end - start;
+      let current = start;
+      const increment = end > start ? 1 : +1;
+      const stepTime = Math.abs(Math.floor(duration / range));
+      const obj = document.getElementById(id);
+      const timer = setInterval(function () {
+        current += increment;
+        obj.innerHTML = current.toString() ?? 0;
+        if (current == end) {
+          clearInterval(timer);
+        }
+      }, stepTime);
+    }
+  }
+  if (anim4) {
+    animateValue("totalPost", 0, 6, 700);
+    animateValue("totalUser", 0, 200, 700);
+  }
+  const kanit_fonts = kanit;
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    //
+    <>
+      <div
+        id="first"
+        className="snap-start h-auto lg:h-screen bg-accentBlue shrink-0 min-w-full flex min-h-screen flex-col items-center justify-between pt-24 pb-6"
+      >
+        <div className="grid  lg:grid-cols-2 w-3/4 lg:w-[1100px] h-auto lg:h-[945px] transition-all duration-300">
+          <div className=" flex-1 gap-4 w-full lg:w-[523px] h-auto lg:h-full transition-all duration-300">
+            <h1
+              className={`${kanit_fonts.className} text-left w-full h-auto text-[65px] text-slate-800 transition-all duration-300 `}
+            >
+              A good workplace create a good mindset.
+            </h1>
+            <div className="text-justify h-auto ">
+              <p className="text-[20px] text-slate-800">
+                Getting the place you need doesn`t have to feel confusing and
+                impersonal.
+              </p>
+              <p className="text-[20px] text-slate-800">
+                That`s why we`ve made it as easy as possible to get the product
+                you need with the personalized preference and first-class
+                quality of the product you deserve.
+              </p>
+            </div>
+            <div className="h-1/5 grid pt-6 w-full   justify-items-center">
+              <button className="w-1/2 h-[50px] rounded-3xl bg-orangeCream">
+                Book your workplace now!
+              </button>
+            </div>
+          </div>
+          <div className="rounded-2xl ">
+            <img
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDYzNDB8MHwxfHNlYXJjaHwxfHx3b3JraW5nJTIwdGVhbXxlbnwwfHx8fDE2OTU0Nzk0MTN8MA&ixlib=rb-4.0.3&q=80&w=1080"
+              alt="front"
+              className="w-full h-full  object-cover lg:object-right sm:rounded-2xl transition-all duration-300"
+            ></img>
+          </div>
+        </div>
+        {/* <div className="rounded-xl bg-sweetPink h-1/2 w-3/4"></div> */}
+      </div>
+      <div
+        id="second"
+        className="snap-start  h-auto lg:h-screen  shrink-0 min-w-full flex min-h-screen flex-col items-center  p-24"
+      >
+        <div className="flex  grid-cols-2 gap-3 w-full h-full ">
+          <div className="w-3/4 h-full ">
+            <div className="flex grid-cols-2 gap-2 w-full h-1/2 pb-2">
+              <img
+                src="https://images.unsplash.com/photo-1587301669187-732ea66e7617?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDYzNDB8MHwxfHNlYXJjaHwxMHx8d29ya3NwYWNlfGVufDB8fHx8MTY5NTQ3NzkzOHww&ixlib=rb-4.0.3&q=80&w=1080"
+                alt="Picture of the x"
+                className={` transition-all duration-1500 rounded-xl object-fill bg-accentBlue h-full w-1/4 ${
+                  anim2 ? "opacity-100 animate-fadeIn" : "opacity-0"
+                } `}
+              ></img>
+              <img
+                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDYzNDB8MHwxfHNlYXJjaHwzfHx3b3JraW5nJTIwdGVhbXxlbnwwfHx8fDE2OTU0Nzk0MTN8MA&ixlib=rb-4.0.3&q=80&w=1080"
+                alt="Picture of the x"
+                className={`animate-fadeIn transition-all duration-1500 rounded-xl object-cover object-bottom bg-slate-800 h-full w-3/4 ${
+                  anim2 ? "opacity-100" : "opacity-0"
+                } `}
+              ></img>
+            </div>
+            <div className="flex grid-cols-2 gap-2 w-full h-1/2 pt-2">
+              <img
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDYzNDB8MHwxfHNlYXJjaHwzfHx0ZWFtfGVufDB8fHx8MTY5NTQ3ODM5Mnww&ixlib=rb-4.0.3&q=80&w=1080"
+                alt="Picture of the x"
+                className={`animate-fadeIn transition-all duration-1500 rounded-xl object-cover object-center bg-cream h-full w-3/4 ${
+                  anim2 ? "opacity-100" : "opacity-0"
+                } `}
+              ></img>
+              <img
+                src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDYzNDB8MHwxfHNlYXJjaHw5fHx3b3Jrc3BhY2V8ZW58MHx8fHwxNjk1NDc3OTM4fDA&ixlib=rb-4.0.3&q=80&w=1080"
+                alt="Picture of the x"
+                className={` transition-all duration-1500 rounded-xl object-fill bg-primaryBlue h-full w-1/4 ${
+                  anim2 ? "opacity-100 animate-fadeIn" : "opacity-0"
+                } `}
+                //
+              ></img>
+            </div>
+          </div>
+          <div
+            className={`w-1/4 h-full rounded-2xl bg-orange-700 transition-all duration-1500 p-3 ${
+              anim2 ? "opacity-100 animate-fadeIn " : "hidden translate-x-32"
+            } `}
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            <div className="self-center justify-center text-center ">
+              <p className="text-2xl lg:text-5xl text-whitebg font-bold">
+                Create, Present, and Work.
+              </p>
+            </div>
+            <p className="text-xl lg:text-2xl text-slate-900 text-left mt-3 h-full w-full">
+              Start your company with us, our workspace is perfect for a small
+              or starting up company who needs space for works, a meeting or
+              presentation space, and peaceful.
+            </p>
+          </div>
         </div>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div
+        id="third"
+        className="snap-start h-auto  lg:h-screen bg-sweetPink shrink-0 min-w-full flex min-h-screen flex-col items-center justify-between p-24"
+      >
+        <Facilitates anim={anim3}></Facilitates>
       </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
+      <div
+        id="stats"
+        className="snap-start h-auto  lg:h-screen  shrink-0 min-w-full flex min-h-screen flex-col items-center justify-between p-24"
+      >
+        <div className={`self-center justify-center text-center  `}>
+          <p className="text-3xl text-black font-bold">Total Our User</p>
+          <p className="">
+            What (imaginary) stats for this (imaginary) company.
           </p>
-        </a>
+        </div>
+        <div className=" flex h-full w-full text-center text-5xl">
+          <div className="mx-auto my-auto flex w-full ">
+            <div className="w-full border-r border-gray-600">
+              <div>Total Company</div>
+              <div id="totalPost">0</div>
+            </div>
+            <div className="w-full border-l border-gray-600">
+              <div>Total Member</div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+              <div id="totalUser">0</div>
+            </div>
+          </div>
+        </div>
       </div>
-    </main>
-  )
+      <div
+        id="fourth"
+        className="snap-start  h-auto lg:h-screen shrink-0 min-w-full flex min-h-screen flex-col items-center justify-between p-7 lg:p-24"
+      >
+        <TestimonialCard anim1={anim1}></TestimonialCard>
+      </div>
+    </>
+  );
 }
