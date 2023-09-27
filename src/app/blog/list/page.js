@@ -77,7 +77,11 @@ export default function List() {
           <div className="flex-row grid gap-3">
             {data?.map((index, i) => {
               return (
-                <Link href={`${i}`} key={i} className="grid justify-center">
+                <Link
+                  href={`/blog/${i}`}
+                  key={i}
+                  className="grid justify-center"
+                >
                   <BlogList data={index} indexData={i}></BlogList>
                 </Link>
               );
