@@ -12,9 +12,9 @@ export default function About() {
             className="w-full h-full  object-cover lg:object-left sm:rounded-2xl transition-all duration-300"
           ></img>
         </div>
-        <div className=" flex-1 gap-4 w-full lg:w-[523px] h-full] transition-all duration-300">
+        <div className=" flex-1 gap-4 w-full lg:w-full h-full transition-all duration-300">
           <h1
-            className={`${kanit_fonts.className} text-left w-full h-auto text-[45px] lg:text-[75px] text-slate-600 transition-all duration-300`}
+            className={`${kanit_fonts.className} text-left w-full h-auto text-[35px] lg:text-[65px] text-slate-600 transition-all duration-300`}
           >
             Place that priotize you first.
           </h1>
