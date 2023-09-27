@@ -123,10 +123,13 @@ export default function Home() {
       }, stepTime);
     }
   }
-  if (anim4) {
-    animateValue("totalPost", 0, 6, 700);
-    animateValue("totalUser", 0, 200, 700);
-  }
+  useEffect(() => {
+    if (anim4) {
+      animateValue("totalPost", 0, 6, 700);
+      animateValue("totalUser", 0, 200, 700);
+    }
+  }, [anim4]);
+
   const kanit_fonts = kanit;
 
   return (
