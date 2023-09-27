@@ -55,7 +55,7 @@ export default function List() {
         <div
           className={`${kanit_fonts.className} self-start flex   w-[250px] h-auto border-b-2 border-slate-900`}
         >
-          <Link href={`${process.env.URL_WEB}/blog`}>
+          <Link href={`/blog`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
